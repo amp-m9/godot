@@ -745,7 +745,7 @@ public:
 	void set_prevent_delete(bool p_prevent){
 		data.prevent_deletion = p_prevent;
 	}
-	void get_prevent_delete() const {
+	bool get_prevent_delete() const {
 		return data.prevent_deletion;
 	}
 	// These inherited functions need proper multithread locking when overridden in Node.
