@@ -242,6 +242,7 @@ private:
 
 		mutable NodePath *path_cache = nullptr;
 
+		bool prevent_deletion = false;
 	} data;
 
 	Ref<MultiplayerAPI> multiplayer;
@@ -741,6 +742,12 @@ public:
 	void set_thread_safe(const StringName &p_property, const Variant &p_value);
 	void notify_thread_safe(int p_notification);
 
+	void set_prevent_delete(bool p_prevent){
+		data.prevent_deletion = p_prevent;
+	}
+	void get_prevent_delete() const {
+		return data.prevent_deletion;
+	}
 	// These inherited functions need proper multithread locking when overridden in Node.
 #ifdef DEBUG_ENABLED
 

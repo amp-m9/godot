@@ -3779,6 +3779,8 @@ void Node::_bind_methods() {
 	ADD_GROUP("Editor Description", "editor_");
 	ADD_PROPERTY(PropertyInfo(Variant::STRING, "editor_description", PROPERTY_HINT_MULTILINE_TEXT), "set_editor_description", "get_editor_description");
 
+	ADD_PROPERTY(PropertyInfo(Variant::BOOL, "prevent_delete", PROPERTY_HINT_FLAGS), "set_prevent_delete", "get_prevent_delete");
+
 	GDVIRTUAL_BIND(_process, "delta");
 	GDVIRTUAL_BIND(_physics_process, "delta");
 	GDVIRTUAL_BIND(_enter_tree);

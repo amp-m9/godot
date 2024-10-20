@@ -1037,6 +1037,12 @@ void SceneTreeDock::_tool_selected(int p_tool, bool p_confirm_override) {
 				return;
 			}
 
+			for(Node* node: remove_list) {
+				if(node->get_prevent_delete()) {
+					return;
+				}
+			}
+
 			if (!_validate_no_foreign()) {
 				break;
 			}
