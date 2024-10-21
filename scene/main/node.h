@@ -748,11 +748,6 @@ public:
 	// BEGIN CHANGE 
 	// GC-1 - Add ability to create subnodes thaat are locked.
 	void set_prevent_delete(bool p_prevent){
-		if(data.editor_cannot_override_prevent_deletion)
-		{
-			return;
-		}
-
 		data.prevent_deletion = p_prevent;
 	}
 	bool get_prevent_delete() {
