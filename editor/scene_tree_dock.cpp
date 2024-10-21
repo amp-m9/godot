@@ -1037,11 +1037,14 @@ void SceneTreeDock::_tool_selected(int p_tool, bool p_confirm_override) {
 				return;
 			}
 
+			// BEGIN CHANGE 
+			// GC-1 - Add ability to create subnodes thaat are locked.
 			for(Node* node: remove_list) {
 				if(node->get_prevent_delete()) {
 					return;
 				}
 			}
+			// END CHANGE
 
 			if (!_validate_no_foreign()) {
 				break;

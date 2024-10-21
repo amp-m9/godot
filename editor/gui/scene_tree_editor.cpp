@@ -365,6 +365,13 @@ void SceneTreeEditor::_add_nodes(Node *p_node, TreeItem *p_parent) {
 		if (num_connections >= 1 || num_groups >= 1) {
 			item->add_button(0, icon_temp, signal_temp, false, msg_temp);
 		}
+
+		// BEGIN CHANGE 
+		// GC-1 - Add ability to create subnodes thaat are locked.
+		if(p_node->get_prevent_delete()) {
+			item->add_button(0, get_editor_theme_icon(SNAME("Object")), BUTTON_WARNING, false, "Node is added by the editor or parent node. It cannot be deleted.");
+		}
+		// END CHANGE
 	}
 
 	{

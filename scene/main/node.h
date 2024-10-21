@@ -242,7 +242,10 @@ private:
 
 		mutable NodePath *path_cache = nullptr;
 
+		// BEGIN CHANGE 
+		// GC-1 - Add ability to create subnodes thaat are locked.
 		bool prevent_deletion = false;
+		// END CHANGE
 	} data;
 
 	Ref<MultiplayerAPI> multiplayer;
@@ -742,12 +745,20 @@ public:
 	void set_thread_safe(const StringName &p_property, const Variant &p_value);
 	void notify_thread_safe(int p_notification);
 
+	// BEGIN CHANGE 
+	// GC-1 - Add ability to create subnodes thaat are locked.
 	void set_prevent_delete(bool p_prevent){
+		if(data.editor_cannot_override_prevent_deletion)
+		{
+			return;
+		}
+
 		data.prevent_deletion = p_prevent;
 	}
-	bool get_prevent_delete() const {
+	bool get_prevent_delete() {
 		return data.prevent_deletion;
 	}
+	// END CHANGE
 	// These inherited functions need proper multithread locking when overridden in Node.
 #ifdef DEBUG_ENABLED
 

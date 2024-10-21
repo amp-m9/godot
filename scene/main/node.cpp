@@ -3623,9 +3623,12 @@ void Node::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("atr", "message", "context"), &Node::atr, DEFVAL(""));
 	ClassDB::bind_method(D_METHOD("atr_n", "message", "plural_message", "n", "context"), &Node::atr_n, DEFVAL(""));
 
-	godot::ClassDB::bind_method(godot::D_METHOD("get_prevent_delete"), & Node::get_prevent_delete); 
-	godot::ClassDB::bind_method(godot::D_METHOD("set_prevent_delete", "prevent_delete"), & FPSPlayer ::set_prevent_delete);
-
+	// BEGIN CHANGE 
+	// GC-1 - Add ability to create subnodes thaat are locked.
+	// ClassDB::bind_method(D_METHOD("get_prevent_delete"), & Node::get_prevent_delete); 
+	// ClassDB::bind_method(D_METHOD("set_prevent_delete", "prevent_delete"), & Node ::set_prevent_delete);
+	// ADD_PROPERTY(PropertyInfo(Variant::BOOL, "prevent_delete"), "set_prevent_delete", "get_prevent_delete");
+	// END CHANGE
 
 #ifdef TOOLS_ENABLED
 	ClassDB::bind_method(D_METHOD("_set_property_pinned", "property", "pinned"), &Node::set_property_pinned);
@@ -3782,8 +3785,6 @@ void Node::_bind_methods() {
 
 	ADD_GROUP("Editor Description", "editor_");
 	ADD_PROPERTY(PropertyInfo(Variant::STRING, "editor_description", PROPERTY_HINT_MULTILINE_TEXT), "set_editor_description", "get_editor_description");
-
-	ADD_PROPERTY(PropertyInfo(Variant::BOOL, "prevent_delete"), "set_prevent_delete", "get_prevent_delete");
 
 	GDVIRTUAL_BIND(_process, "delta");
 	GDVIRTUAL_BIND(_physics_process, "delta");
